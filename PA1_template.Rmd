@@ -31,7 +31,7 @@ steps_day <-tapply(activity$steps,activity$date,sum)
 
 ## What is mean total number of steps taken per day?
 
-Summarize the new variable steps_day (calculated without removing the Na values) and check out the histogram of its values' distribution.
+Summarize the new variable steps_day (calculated without removing the NA values) and check out the histogram of its values' distribution.
 
 ```{r totaldailysteps, fig.height=4}
 summary(steps_day)
@@ -40,7 +40,7 @@ hist(steps_day, main="Total Number of Steps Taken per Day", col="light blue", xl
 
 ## What is the average daily activity pattern?
 
-Calculate the number of steps taken per 5-minute interval averaged across days (making sure the Na values are removed).
+Calculate the number of steps taken per 5-minute interval averaged across days (making sure the NA values are removed).
 
 ```{r averagedailysteps}
 steps_interval <-tapply(activity$steps,activity$interval,mean, na.rm=T)
@@ -62,6 +62,68 @@ On average the maximum number of steps occurred in the `r max_steps`th 5-minute 
 
 ## Imputing missing values
 
+```{r}
+total_NA <- sum(is.na(activity))
+```
+- The total number of missing values is `r total_NA`.
 
+- Let's fill in the missing values for the variable steps by using its mean estimate for that 5-minute interval across all days. 
+
+- A new dataset activity2 is created by the following steps:
+  1. Copy the dataset and check how many Na values there are.
+  2. Calculate the mean values of the steps for all the 288 intervals across all days. 
+  3. Create a loop that will replace in all missing values with their mean estimates.
+  4. Make sure the new dataset has no more missing values.
+ 
+```{r activity2dateset}
+activity2 <- activity
+summary(activity2)
+interval_means <- tapply(activity$steps,activity$interval, mean, na.rm=T)
+summary(interval_means)
+str(interval_means)
+
+
+for (i in 1:17568) 
+  {if (is.na(activity2$steps[i])) 
+      {activity2$steps[i] <- interval_means[as.numeric(activity2$interval[i])]
+       }
+   }
+
+summary(activity2)
+
+```
+
+- Calculate the total number of steps per day, report the mean and the median and displace the distribution using a histogram.
+
+```{r newtotaldailysteps, fig.height=4}
+steps_day2 <-tapply(activity2$steps,activity$date,sum)
+summary(steps_day2)
+hist(steps_day2, main="Total Number of Steps Taken per Day (imputed)", col="orange", xlab="Steps per Day (imputed values")
+```
+
+- The estimates of the median and the mean of the total steps per day computed from the new dataset are the same as initially estimated. However, slightly different estimates are reported for the 1st and the 3rd quatiles of the distribution.
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+- Create a new factor variable with two levels.
+```{r}
+activity2$dayofweek <- weekdays(activity2$date)
+table(activity2$dayofweek)
+
+activity2$dayofweek <- gsub("Monday|Tuesday|Wednesday|Thursday|Friday","weekday",activity2$dayofweek)
+activity2$dayofweek <- gsub("Saturday|Sunday","weekend",activity2$dayofweek)
+
+table(activity2$dayofweek)
+
+activity2$dayofweek <- factor(activity2$dayofweek, levels=c("weekend","weekday"))
+```
+
+- Make a time series plot for the number of steps per interval averaged across weekdays and weekends. 
+
+```{r}
+library(ggplot2)
+g <- ggplot(activity2, aes(as.numeric(interval), steps))
+g + geom_line(aes(color=dayofweek)) + facet_wrap(~ dayofweek,nrow=2,ncol=1) + labs(x="Interval",y="Number of steps")
+
+```
+
