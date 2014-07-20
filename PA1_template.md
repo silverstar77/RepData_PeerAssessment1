@@ -11,6 +11,18 @@ Before you load and process the data please make sure that you set your working 
 ```r
 fileUrl <- "http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
 download.file(fileUrl,destfile="./Activity monitoring data.zip") 
+```
+
+```
+## Warning: unable to resolve 'd396qusza40orc.cloudfront.net'
+```
+
+```
+## Error: cannot open URL
+## 'http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip'
+```
+
+```r
 list.files()
 ```
 
@@ -23,9 +35,8 @@ list.files()
 ##  [6] "PA1_template.html"                           
 ##  [7] "PA1_template.md"                             
 ##  [8] "PA1_template.Rmd"                            
-##  [9] "RA1_template.html"                           
-## [10] "repdata-data-activity.zip"                   
-## [11] "Reproducible Research _Project 1 Outline.pdf"
+##  [9] "repdata-data-activity.zip"                   
+## [10] "Reproducible Research _Project 1 Outline.pdf"
 ```
 
 - Unzip it and read the csv file into a dataset called "activity". Check the number of observations and the variables' class.
@@ -33,6 +44,13 @@ list.files()
 
 ```r
 unzip("./Activity monitoring data.zip")
+```
+
+```
+## Warning: error 1 in extracting from zip file
+```
+
+```r
 activity <- read.csv("activity.csv")
 str(activity)
 ```
@@ -59,12 +77,12 @@ Summarize the new variable steps_day (calculated without removing the NA values)
 
 
 ```r
-summary(steps_day)
+summary(steps_day, digits=9)
 ```
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-##      41    8840   10800   10800   13300   21200       8
+##      41    8841   10765   10766   13294   21194       8
 ```
 
 ```r
@@ -72,6 +90,26 @@ hist(steps_day, main="Total Number of Steps Taken per Day", col="light blue", xl
 ```
 
 ![plot of chunk totaldailysteps](figure/totaldailysteps.png) 
+
+Or for more precise results:
+
+
+```r
+mean(steps_day,na.rm=T)
+```
+
+```
+## [1] 10766
+```
+
+```r
+median(steps_day,na.rm=T)
+```
+
+```
+## [1] 10765
+```
+
 
 ## What is the average daily activity pattern?
 
