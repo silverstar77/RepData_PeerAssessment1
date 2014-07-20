@@ -33,14 +33,14 @@ steps_day <-tapply(activity$steps,activity$date,sum)
 
 Summarize the new variable steps_day (calculated without removing the NA values) and check out the histogram of its values' distribution.
 
-```{r totaldailysteps, fig.height=4}
-summary(steps_day, digits=9)
+```{r totaldailysteps, fig.height=4,R.options=options(digits=7)}
+summary(steps_day, digits=7)
 hist(steps_day, main="Total Number of Steps Taken per Day", col="light blue", xlab="Steps per Day")
 ```
 
 Or for more precise results:
 
-```{r mean & median}
+```{r mean & median, R.options=options(digits=7)}
 mean(steps_day,na.rm=T)
 median(steps_day,na.rm=T)
 

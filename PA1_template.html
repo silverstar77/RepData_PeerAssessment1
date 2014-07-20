@@ -191,16 +191,7 @@ hljs.initHighlightingOnLoad();
 
 <pre><code class="r">fileUrl &lt;- &quot;http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip&quot;
 download.file(fileUrl,destfile=&quot;./Activity monitoring data.zip&quot;) 
-</code></pre>
-
-<pre><code>## Warning: unable to resolve &#39;d396qusza40orc.cloudfront.net&#39;
-</code></pre>
-
-<pre><code>## Error: cannot open URL
-## &#39;http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip&#39;
-</code></pre>
-
-<pre><code class="r">list.files()
+list.files()
 </code></pre>
 
 <pre><code>##  [1] &quot;Activity monitoring data.zip&quot;                
@@ -220,12 +211,7 @@ download.file(fileUrl,destfile=&quot;./Activity monitoring data.zip&quot;)
 </ul>
 
 <pre><code class="r">unzip(&quot;./Activity monitoring data.zip&quot;)
-</code></pre>
-
-<pre><code>## Warning: error 1 in extracting from zip file
-</code></pre>
-
-<pre><code class="r">activity &lt;- read.csv(&quot;activity.csv&quot;)
+activity &lt;- read.csv(&quot;activity.csv&quot;)
 str(activity)
 </code></pre>
 
@@ -246,7 +232,7 @@ steps_day &lt;-tapply(activity$steps,activity$date,sum)
 
 <p>Summarize the new variable steps_day (calculated without removing the NA values) and check out the histogram of its values&#39; distribution.</p>
 
-<pre><code class="r">summary(steps_day, digits=9)
+<pre><code class="r">summary(steps_day, digits=7)
 </code></pre>
 
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
@@ -263,7 +249,7 @@ steps_day &lt;-tapply(activity$steps,activity$date,sum)
 <pre><code class="r">mean(steps_day,na.rm=T)
 </code></pre>
 
-<pre><code>## [1] 10766
+<pre><code>## [1] 10766.19
 </code></pre>
 
 <pre><code class="r">median(steps_day,na.rm=T)
@@ -316,14 +302,14 @@ max_steps&lt;-int
 summary(activity2)
 </code></pre>
 
-<pre><code>##      steps            date               interval    
-##  Min.   :  0.0   Min.   :2012-10-01   0      :   61  
-##  1st Qu.:  0.0   1st Qu.:2012-10-16   5      :   61  
-##  Median :  0.0   Median :2012-10-31   10     :   61  
-##  Mean   : 37.4   Mean   :2012-10-31   15     :   61  
-##  3rd Qu.: 12.0   3rd Qu.:2012-11-15   20     :   61  
-##  Max.   :806.0   Max.   :2012-11-30   25     :   61  
-##  NA&#39;s   :2304                         (Other):17202
+<pre><code>##      steps             date               interval    
+##  Min.   :  0.00   Min.   :2012-10-01   0      :   61  
+##  1st Qu.:  0.00   1st Qu.:2012-10-16   5      :   61  
+##  Median :  0.00   Median :2012-10-31   10     :   61  
+##  Mean   : 37.38   Mean   :2012-10-31   15     :   61  
+##  3rd Qu.: 12.00   3rd Qu.:2012-11-15   20     :   61  
+##  Max.   :806.00   Max.   :2012-11-30   25     :   61  
+##  NA&#39;s   :2304                          (Other):17202
 </code></pre>
 
 <pre><code class="r">interval_means &lt;- tapply(activity$steps,activity$interval, mean, na.rm=T)
@@ -331,7 +317,7 @@ summary(interval_means)
 </code></pre>
 
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.00    2.49   34.10   37.40   52.80  206.00
+##   0.000   2.486  34.110  37.380  52.830 206.200
 </code></pre>
 
 <pre><code class="r">str(interval_means)
@@ -351,14 +337,14 @@ summary(interval_means)
 summary(activity2)
 </code></pre>
 
-<pre><code>##      steps            date               interval    
-##  Min.   :  0.0   Min.   :2012-10-01   0      :   61  
-##  1st Qu.:  0.0   1st Qu.:2012-10-16   5      :   61  
-##  Median :  0.0   Median :2012-10-31   10     :   61  
-##  Mean   : 37.4   Mean   :2012-10-31   15     :   61  
-##  3rd Qu.: 27.0   3rd Qu.:2012-11-15   20     :   61  
-##  Max.   :806.0   Max.   :2012-11-30   25     :   61  
-##                                       (Other):17202
+<pre><code>##      steps             date               interval    
+##  Min.   :  0.00   Min.   :2012-10-01   0      :   61  
+##  1st Qu.:  0.00   1st Qu.:2012-10-16   5      :   61  
+##  Median :  0.00   Median :2012-10-31   10     :   61  
+##  Mean   : 37.38   Mean   :2012-10-31   15     :   61  
+##  3rd Qu.: 27.00   3rd Qu.:2012-11-15   20     :   61  
+##  Max.   :806.00   Max.   :2012-11-30   25     :   61  
+##                                        (Other):17202
 </code></pre>
 
 <ul>
@@ -370,7 +356,7 @@ summary(steps_day2)
 </code></pre>
 
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##      41    9820   10800   10800   12800   21200
+##      41    9819   10770   10770   12810   21190
 </code></pre>
 
 <pre><code class="r">hist(steps_day2, main=&quot;Total Number of Steps Taken per Day (imputed)&quot;, col=&quot;orange&quot;, xlab=&quot;Steps per Day (imputed values&quot;)

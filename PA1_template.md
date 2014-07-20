@@ -11,18 +11,6 @@ Before you load and process the data please make sure that you set your working 
 ```r
 fileUrl <- "http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
 download.file(fileUrl,destfile="./Activity monitoring data.zip") 
-```
-
-```
-## Warning: unable to resolve 'd396qusza40orc.cloudfront.net'
-```
-
-```
-## Error: cannot open URL
-## 'http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip'
-```
-
-```r
 list.files()
 ```
 
@@ -44,13 +32,6 @@ list.files()
 
 ```r
 unzip("./Activity monitoring data.zip")
-```
-
-```
-## Warning: error 1 in extracting from zip file
-```
-
-```r
 activity <- read.csv("activity.csv")
 str(activity)
 ```
@@ -77,7 +58,7 @@ Summarize the new variable steps_day (calculated without removing the NA values)
 
 
 ```r
-summary(steps_day, digits=9)
+summary(steps_day, digits=7)
 ```
 
 ```
@@ -99,7 +80,7 @@ mean(steps_day,na.rm=T)
 ```
 
 ```
-## [1] 10766
+## [1] 10766.19
 ```
 
 ```r
@@ -161,14 +142,14 @@ summary(activity2)
 ```
 
 ```
-##      steps            date               interval    
-##  Min.   :  0.0   Min.   :2012-10-01   0      :   61  
-##  1st Qu.:  0.0   1st Qu.:2012-10-16   5      :   61  
-##  Median :  0.0   Median :2012-10-31   10     :   61  
-##  Mean   : 37.4   Mean   :2012-10-31   15     :   61  
-##  3rd Qu.: 12.0   3rd Qu.:2012-11-15   20     :   61  
-##  Max.   :806.0   Max.   :2012-11-30   25     :   61  
-##  NA's   :2304                         (Other):17202
+##      steps             date               interval    
+##  Min.   :  0.00   Min.   :2012-10-01   0      :   61  
+##  1st Qu.:  0.00   1st Qu.:2012-10-16   5      :   61  
+##  Median :  0.00   Median :2012-10-31   10     :   61  
+##  Mean   : 37.38   Mean   :2012-10-31   15     :   61  
+##  3rd Qu.: 12.00   3rd Qu.:2012-11-15   20     :   61  
+##  Max.   :806.00   Max.   :2012-11-30   25     :   61  
+##  NA's   :2304                          (Other):17202
 ```
 
 ```r
@@ -178,7 +159,7 @@ summary(interval_means)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.00    2.49   34.10   37.40   52.80  206.00
+##   0.000   2.486  34.110  37.380  52.830 206.200
 ```
 
 ```r
@@ -202,14 +183,14 @@ summary(activity2)
 ```
 
 ```
-##      steps            date               interval    
-##  Min.   :  0.0   Min.   :2012-10-01   0      :   61  
-##  1st Qu.:  0.0   1st Qu.:2012-10-16   5      :   61  
-##  Median :  0.0   Median :2012-10-31   10     :   61  
-##  Mean   : 37.4   Mean   :2012-10-31   15     :   61  
-##  3rd Qu.: 27.0   3rd Qu.:2012-11-15   20     :   61  
-##  Max.   :806.0   Max.   :2012-11-30   25     :   61  
-##                                       (Other):17202
+##      steps             date               interval    
+##  Min.   :  0.00   Min.   :2012-10-01   0      :   61  
+##  1st Qu.:  0.00   1st Qu.:2012-10-16   5      :   61  
+##  Median :  0.00   Median :2012-10-31   10     :   61  
+##  Mean   : 37.38   Mean   :2012-10-31   15     :   61  
+##  3rd Qu.: 27.00   3rd Qu.:2012-11-15   20     :   61  
+##  Max.   :806.00   Max.   :2012-11-30   25     :   61  
+##                                        (Other):17202
 ```
 
 - Calculate the total number of steps per day, report the mean and the median and displace the distribution using a histogram.
@@ -222,7 +203,7 @@ summary(steps_day2)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##      41    9820   10800   10800   12800   21200
+##      41    9819   10770   10770   12810   21190
 ```
 
 ```r
