@@ -33,9 +33,9 @@ steps_day <-tapply(activity$steps,activity$date,sum)
 
 Summarize the new variable steps_day (calculated without removing the NA values) and check out the histogram of its values' distribution.
 
-```{r totaldailysteps, fig.height=4,R.options=options(digits=7)}
+```{r totaldailysteps, fig.height=5,R.options=options(digits=7)}
 summary(steps_day, digits=7)
-hist(steps_day, main="Total Number of Steps Taken per Day", col="light blue", xlab="Steps per Day")
+hist(steps_day, breaks=10, main="Total Number of Steps Taken per Day", col="light blue", xlab="Steps per Day")
 ```
 
 Or for more precise results:
@@ -56,7 +56,7 @@ steps_interval <-tapply(activity$steps,activity$interval,mean, na.rm=T)
 ```
 
 Here is the time series plot.
-```{r timeseries, fig.height=4}
+```{r timeseries, fig.height=5}
 plot(steps_interval, type="l", main="Average # of Steps Taken per a 5-Minute Interval", xlab="5-minute interval identifier", ylab="Average # of steps taken")
 ```
 
@@ -104,13 +104,13 @@ summary(activity2)
 
 - Calculate the total number of steps per day, report the mean and the median and displace the distribution using a histogram.
 
-```{r newtotaldailysteps, fig.height=4}
+```{r newtotaldailysteps, fig.height=5,R.options=options(digits=7)}
 steps_day2 <-tapply(activity2$steps,activity$date,sum)
 summary(steps_day2)
-hist(steps_day2, main="Total Number of Steps Taken per Day (imputed)", col="orange", xlab="Steps per Day (imputed values")
+hist(steps_day2, breaks=10, main="Total Number of Steps Taken per Day (imputed)", col="orange", xlab="Steps per Day (imputed values)")
 ```
 
-- The estimates of the median and the mean of the total steps per day computed from the new dataset are the same as initially estimated. However, slightly different estimates are reported for the 1st and the 3rd quatiles of the distribution.
+- The estimates of the median and the mean of the total steps per day computed from the new dataset increased very little compared to the ones initially estimated. However, different estimates are reported for the 1st and the 3rd quartiles of the distribution.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 

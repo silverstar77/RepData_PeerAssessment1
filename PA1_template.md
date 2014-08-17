@@ -15,16 +15,15 @@ list.files()
 ```
 
 ```
-##  [1] "Activity monitoring data.zip"                
-##  [2] "activity.csv"                                
-##  [3] "code.R"                                      
-##  [4] "figure"                                      
-##  [5] "instructions.pdf"                            
-##  [6] "PA1_template.html"                           
-##  [7] "PA1_template.md"                             
-##  [8] "PA1_template.Rmd"                            
-##  [9] "repdata-data-activity.zip"                   
-## [10] "Reproducible Research _Project 1 Outline.pdf"
+## [1] "Activity monitoring data.zip"                
+## [2] "activity.csv"                                
+## [3] "code.R"                                      
+## [4] "instructions.pdf"                            
+## [5] "PA1_template.html"                           
+## [6] "PA1_template.Rmd"                            
+## [7] "Project 2"                                   
+## [8] "repdata-data-activity.zip"                   
+## [9] "Reproducible Research _Project 1 Outline.pdf"
 ```
 
 - Unzip it and read the csv file into a dataset called "activity". Check the number of observations and the variables' class.
@@ -67,7 +66,7 @@ summary(steps_day, digits=7)
 ```
 
 ```r
-hist(steps_day, main="Total Number of Steps Taken per Day", col="light blue", xlab="Steps per Day")
+hist(steps_day, breaks=10, main="Total Number of Steps Taken per Day", col="light blue", xlab="Steps per Day")
 ```
 
 ![plot of chunk totaldailysteps](figure/totaldailysteps.png) 
@@ -207,12 +206,12 @@ summary(steps_day2)
 ```
 
 ```r
-hist(steps_day2, main="Total Number of Steps Taken per Day (imputed)", col="orange", xlab="Steps per Day (imputed values")
+hist(steps_day2, breaks=10, main="Total Number of Steps Taken per Day (imputed)", col="orange", xlab="Steps per Day (imputed values)")
 ```
 
 ![plot of chunk newtotaldailysteps](figure/newtotaldailysteps.png) 
 
-- The estimates of the median and the mean of the total steps per day computed from the new dataset are the same as initially estimated. However, slightly different estimates are reported for the 1st and the 3rd quatiles of the distribution.
+- The estimates of the median and the mean of the total steps per day computed from the new dataset increased very little compared to the ones initially estimated. However, different estimates are reported for the 1st and the 3rd quartiles of the distribution.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
